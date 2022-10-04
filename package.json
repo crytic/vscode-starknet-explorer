@@ -4,6 +4,7 @@
 	"description": "Visualize storage variables, external and view functions, and events in StarkNet contracts.",
 	"version": "0.0.1",
 	"author": "Trail of Bits",
+	"repository": {"url": "https://github.com/crytic/vscode-cairo-starknet-explorer"},
 	"engines": {
 		"vscode": "^1.71.0"
 	},

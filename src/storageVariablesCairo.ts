@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 
-import { getIndicesOf, TreeItem } from "./utils";
+import { getIndicesOf } from "./utils";
 
 const STORAGE_PREFIX = "@storage_var\nfunc ";
 
@@ -134,3 +134,30 @@ export class StorageVariablesCairo implements vscode.TreeDataProvider<TreeItem> 
     }
 }
 
+
+export class TreeItem extends vscode.TreeItem {
+    children: TreeItem[] | undefined;
+    parent: TreeItem | undefined;
+
+    constructor(label: string, children?: TreeItem[], lineNum?: number, parent?: TreeItem) {
+        super(
+            label,
+            parent === undefined ? vscode.TreeItemCollapsibleState.Expanded :
+                vscode.TreeItemCollapsibleState.None);
+
+        this.children = children;
+
+        if (lineNum === undefined) {
+            return;
+        }
+
+        let command = {
+            "title": "Select line",
+            "command": "cairoexplorer.openFile",
+            "arguments": [lineNum]
+        };
+
+        this.command = command;
+        this.parent = parent;
+    }
+}
