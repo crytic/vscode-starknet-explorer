@@ -1,8 +1,9 @@
 {
-	"name": "cairostorageviewer",
-	"displayName": "CairoStorageViewer",
-	"description": "",
+	"name": "cairostarknetexplorer",
+	"displayName": "Cairo StarkNet Explorer",
+	"description": "Visualize storage variables, external and view functions, and events in StarkNet contracts.",
 	"version": "0.0.1",
+	"author": "Trail of Bits",
 	"engines": {
 		"vscode": "^1.71.0"
 	},
@@ -10,33 +11,38 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:cairostorageviewer.helloWorld",
-		"onView:cairo-storage-view"
+		"onView:storage-variables"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": [
-			{
-				"command": "cairostorageviewer.helloWorld",
-				"title": "Hello World"
-			}
-		],
 		"viewsContainers": {
 			"activitybar": [
 				{
-					"id": "cairo-storage-viewer",
-					"title": "Cairo Storage",
+					"id": "cairo-starknet-explorer",
+					"title": "Cairo StarkNet Explorer",
 					"icon": "media/egyptian-bird.svg"
 				}
 			]
 		},
 		"views": {
-			"cairo-storage-viewer": [
+			"cairo-starknet-explorer": [
 				{
-					"id": "cairo-storage-view",
+					"id": "storage-variables",
 					"name": "Storage Variables",
 					"icon": "media/egyptian-bird.svg",
-					"contextualTitle": "Read storages"
+					"contextualTitle": "Storage Variables"
+				},
+				{
+					"id": "external-functions",
+					"name": "External & View Functions",
+					"icon": "media/egyptian-bird.svg",
+					"contextualTitle": "External & View Functions"
+				},
+				{
+					"id": "events",
+					"name": "Events",
+					"icon": "media/egyptian-bird.svg",
+					"contextualTitle": "Events"
 				}
 			]
 		}
