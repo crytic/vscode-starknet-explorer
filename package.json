@@ -1,10 +1,13 @@
 {
-	"name": "cairostarknetexplorer",
-	"displayName": "Cairo StarkNet Explorer",
+	"name": "starknet-explorer",
+	"displayName": "StarkNet Explorer",
 	"description": "Visualize storage variables, external and view functions, and events in StarkNet contracts.",
 	"version": "0.0.1",
 	"author": "Trail of Bits",
-	"repository": {"url": "https://github.com/crytic/vscode-cairo-starknet-explorer"},
+	"publisher": "Trail of Bits",
+	"repository": {
+		"url": "https://github.com/crytic/vscode-starknet-explorer"
+	},
 	"engines": {
 		"vscode": "^1.71.0"
 	},
@@ -19,14 +22,14 @@
 		"viewsContainers": {
 			"activitybar": [
 				{
-					"id": "cairo-starknet-explorer",
-					"title": "Cairo StarkNet Explorer",
+					"id": "starknet-explorer",
+					"title": "StarkNet Explorer",
 					"icon": "media/egyptian-bird.svg"
 				}
 			]
 		},
 		"views": {
-			"cairo-starknet-explorer": [
+			"starknet-explorer": [
 				{
 					"id": "storage-variables",
 					"name": "Storage Variables",

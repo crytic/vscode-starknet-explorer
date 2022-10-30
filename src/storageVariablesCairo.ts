@@ -68,12 +68,13 @@ export class StorageVariablesCairo implements vscode.TreeDataProvider<TreeItem> 
         if (storageVars.length > 0) {
             for (const storageVar of storageVars) {
                 let varName = storageVar.substring(0, storageVar.indexOf('('));
-                let label = "⚪ " + varName;
+                let label = varName;
 
                 let idx = docText.indexOf(STORAGE_PREFIX + varName);
                 let position = doc.positionAt(idx);
                 // create parent so that we can construct the children with parent
                 let parent = new TreeItem(label, undefined, position.line + 1);
+                parent.iconPath = new vscode.ThemeIcon('variable');
 
                 let reads = this.getReads(doc, docText, varName, parent);
                 let writes = this.getWrites(doc, docText, varName, parent);
@@ -153,7 +154,7 @@ export class TreeItem extends vscode.TreeItem {
 
         let command = {
             "title": "Select line",
-            "command": "cairoexplorer.openFile",
+            "command": "starknetExplorer.openFile",
             "arguments": [lineNum]
         };
 

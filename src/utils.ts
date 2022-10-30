@@ -1,5 +1,3 @@
-import * as vscode from 'vscode';
-
 /**
  * Returns the indices where searchStr appears in the text.
  * @param searchStr string we are looking for
@@ -19,7 +17,15 @@ export function getIndicesOf(searchStr: string, text: string): number[] {
     return indices;
 }
 
-export function MinNoNegative(a: number, b: number) {
+/**
+ * Computes the minimum of two numbers if they are both positive.
+ * Otherwise, returns undefined if both are negative and the positive value
+ * if only one is negative.
+ * @param a
+ * @param b
+ * @returns
+ */
+export function minNoNegative(a: number, b: number) {
     if (a === b && b === -1) {
         return undefined;
     }

@@ -9,9 +9,7 @@ export class EventCairo implements vscode.TreeDataProvider<TreeItem> {
 
     // will hold all TreeItems
     private data: TreeItem[];
-
     private lineNumberToItemMap: { [linenumber: number]: TreeItem; };
-
 
     // array with all the storage variable names
     private varNames: string[];
@@ -86,7 +84,6 @@ export class EventCairo implements vscode.TreeDataProvider<TreeItem> {
         this.refresh();
     }
 
-
     getEmits(doc: vscode.TextDocument, docText: string, varName: string, parent: TreeItem): TreeItem[] {
         let emits = [];
         let indices = getIndicesOf(varName + ".emit(", docText);
@@ -102,7 +99,6 @@ export class EventCairo implements vscode.TreeDataProvider<TreeItem> {
     refresh(): void {
         this._onDidChangeTreeDataEmitter.fire();
     };
-
 
     getTreeItem(element: TreeItem): vscode.TreeItem | Thenable<vscode.TreeItem> {
         return element;
@@ -139,7 +135,7 @@ export class TreeItem extends vscode.TreeItem {
 
         let command = {
             "title": "Select line",
-            "command": "cairoexplorer.openFile",
+            "command": "starknetExplorer.openFile",
             "arguments": [lineNum]
         };
 

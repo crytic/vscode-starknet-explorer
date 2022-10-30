@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { MinNoNegative } from "./utils";
+import { minNoNegative } from "./utils";
 
 const EXTERNAL_PREFIX = "@external\nfunc ";
 const VIEW_PREFIX = "@view\nfunc ";
@@ -90,7 +90,7 @@ export class ExternalFunctions implements vscode.TreeDataProvider<TreeItem> {
 
         if (viewFunctions.length > 0) {
             for (const viewFunc of viewFunctions) {
-                let separatorIdx = MinNoNegative(viewFunc.indexOf('{'), viewFunc.indexOf('('));
+                let separatorIdx = minNoNegative(viewFunc.indexOf('{'), viewFunc.indexOf('('));
                 let varName = viewFunc.substring(0, separatorIdx);
                 let label = "👁 " + varName;
 
@@ -141,7 +141,7 @@ export class TreeItem extends vscode.TreeItem {
 
         let command = {
             "title": "Select line",
-            "command": "cairoexplorer.openFile",
+            "command": "starknetExplorer.openFile",
             "arguments": [lineNum]
         };
 

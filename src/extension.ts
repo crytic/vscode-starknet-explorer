@@ -12,7 +12,7 @@ var externalTreeView: vscode.TreeView<vscode.TreeItem>;
 var eventTreeView: vscode.TreeView<vscode.TreeItem>;
 
 export function activate(context: vscode.ExtensionContext) {
-	let disposable = vscode.commands.registerCommand('cairoexplorer.openFile', (line: number) => {
+	let disposable = vscode.commands.registerCommand('starknetExplorer.openFile', (line: number) => {
 		let activeEditor = vscode.window.activeTextEditor!;
 		let range = activeEditor.document.lineAt(line).range;
 		activeEditor.selection = new vscode.Selection(range.start, range.end);
@@ -32,9 +32,6 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(reload));
 	context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection(selected));
 	context.subscriptions.push(vscode.workspace.onDidChangeTextDocument(reload));
-
-	// to check if the Cairo Storage tab is visible
-	// storageTreeView.visible
 }
 
 /**
@@ -53,6 +50,10 @@ function reload() {
 function selected(e: vscode.TextEditorSelectionChangeEvent): void {
 	// ignore if we were the ones triggering the selection with the reload range select
 	if (e.kind === vscode.TextEditorSelectionChangeKind.Command) {
+		return;
+	}
+
+	if (!storageTreeView.visible) {
 		return;
 	}
 
