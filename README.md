@@ -19,7 +19,7 @@ Then, you will be able to navigate using the different panels:
 ## Installation
 
 ### Marketplace
-Install vscode-starknet-explorer from the Visual Studio Marketplace within the Extensions tab of Visual Studio Code.
+Install [vscode-starknet-explorer](https://marketplace.visualstudio.com/items?itemName=trailofbits.starknet-explorer) from the Visual Studio Marketplace within the Extensions tab of Visual Studio Code.
 
 ### From prebuilt package
 ```bash
