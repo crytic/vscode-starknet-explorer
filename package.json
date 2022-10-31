@@ -1,10 +1,11 @@
 {
 	"name": "starknet-explorer",
 	"displayName": "StarkNet Explorer",
-	"description": "Visualize storage variables, external and view functions, and events in StarkNet contracts.",
+	"description": "Visualize StarkNet contracts: view storage variables, external and view functions, and events.",
 	"version": "0.0.1",
 	"author": "Trail of Bits",
-	"publisher": "Trail of Bits",
+	"publisher": "trailofbits",
+	"license": "AGPL-3.0",
 	"repository": {
 		"url": "https://github.com/crytic/vscode-starknet-explorer"
 	},
@@ -14,6 +15,14 @@
 	"categories": [
 		"Other"
 	],
+	"keywords": [
+		"cairo",
+		"starknet",
+		"auditing",
+		"contract",
+		"visualization"
+	],
+	"icon": "media/icon.png",
 	"activationEvents": [
 		"onView:storage-variables"
 	],
