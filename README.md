@@ -2,7 +2,7 @@
 
 This VSCode extension quickly shows relevant aspects of StarkNet contracts:
  - Storage variables of the current contract, and where they are read and written to.
- - External and View functions.
+ - External, View and `l1_handler` functions.
  - Events and where they are emitted.
  - Live mode: editing the currently open contracts will update the StarkNet Explorer data.
 
@@ -11,7 +11,7 @@ To use the extension, open a StarkNet contract and switch to the StarkNet Explor
 
 Then, you will be able to navigate using the different panels:
  - **Storage variables**: shows all storage variables, where they are read and where they are written to
- - **External & View functions**: shows all external and view functions
+ - **External & View functions**: shows all external and view functions, and `l1_handlers`
  - **Events**: shows event declaration and where each event is emitted
 
 ![](media/starknet-explorer-screenshot.png)
