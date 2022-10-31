@@ -1,8 +1,9 @@
 import * as vscode from 'vscode';
 import { minNoNegative } from "./utils";
 
-const EXTERNAL_PREFIX = "@external\nfunc ";
-const VIEW_PREFIX = "@view\nfunc ";
+const EXTERNAL_PREFIX = "@external";
+const VIEW_PREFIX = "@view";
+const L1_HANDLER = "@l1_handler";
 
 export class ExternalFunctions implements vscode.TreeDataProvider<TreeItem> {
     private _onDidChangeTreeDataEmitter = new vscode.EventEmitter<TreeItem | undefined | void>();
@@ -69,17 +70,18 @@ export class ExternalFunctions implements vscode.TreeDataProvider<TreeItem> {
 
         if (externalFunctions.length > 0) {
             for (const extFunc of externalFunctions) {
-                let separatorIdx = Math.min(extFunc.indexOf('{'), extFunc.indexOf('('));
-                let varName = extFunc.substring(0, separatorIdx);
+                let declaration = extFunc.substring(extFunc.indexOf("func ") + 5);
+                let separatorIdx = Math.min(declaration.indexOf('{'), declaration.indexOf('('));
+                let varName = declaration.substring(0, separatorIdx);
                 let label = "🅧 " + varName;
 
-                let idx = docText.indexOf(EXTERNAL_PREFIX + varName);
+                let idx = docText.indexOf(declaration);
                 let position = doc.positionAt(idx);
 
-                let parent = new TreeItem(label, position.line + 1);
+                let parent = new TreeItem(label, position.line);
                 this.data.push(parent);
 
-                this.lineNumberToItemMap[position.line + 1] = parent;
+                this.lineNumberToItemMap[position.line] = parent;
 
                 this.externalFunctionNames.push(varName);
             }
@@ -90,17 +92,43 @@ export class ExternalFunctions implements vscode.TreeDataProvider<TreeItem> {
 
         if (viewFunctions.length > 0) {
             for (const viewFunc of viewFunctions) {
-                let separatorIdx = minNoNegative(viewFunc.indexOf('{'), viewFunc.indexOf('('));
-                let varName = viewFunc.substring(0, separatorIdx);
+                let declaration = viewFunc.substring(viewFunc.indexOf("func ") + 5);
+
+                let separatorIdx = minNoNegative(declaration.indexOf('{'), declaration.indexOf('('));
+                let varName = declaration.substring(0, separatorIdx);
                 let label = "👁 " + varName;
 
-                let idx = docText.indexOf(VIEW_PREFIX + varName);
+                let idx = docText.indexOf(declaration);
                 let position = doc.positionAt(idx);
 
-                let parent = new TreeItem(label, position.line + 1);
+                let parent = new TreeItem(label, position.line);
                 this.data.push(parent);
 
-                this.lineNumberToItemMap[position.line + 1] = parent;
+                this.lineNumberToItemMap[position.line] = parent;
+
+                this.externalFunctionNames.push(varName);
+            }
+        }
+
+
+        let l1Handlers = docText.split(L1_HANDLER);
+        l1Handlers.shift();
+
+        if (l1Handlers.length > 0) {
+            for (const l1Handler of l1Handlers) {
+                let declaration = l1Handler.substring(l1Handler.indexOf("func ") + 5);
+
+                let separatorIdx = minNoNegative(declaration.indexOf('{'), declaration.indexOf('('));
+                let varName = declaration.substring(0, separatorIdx);
+                let label = "L₁ " + varName;
+
+                let idx = docText.indexOf(declaration);
+                let position = doc.positionAt(idx);
+
+                let parent = new TreeItem(label, position.line);
+                this.data.push(parent);
+
+                this.lineNumberToItemMap[position.line] = parent;
 
                 this.externalFunctionNames.push(varName);
             }
