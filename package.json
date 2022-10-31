@@ -2,7 +2,7 @@
 	"name": "starknet-explorer",
 	"displayName": "StarkNet Explorer",
 	"description": "Visualize StarkNet contracts: view storage variables, external and view functions, and events.",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"author": "Trail of Bits",
 	"publisher": "trailofbits",
 	"homepage": "https://www.trailofbits.com/",
